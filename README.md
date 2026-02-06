@@ -36,3 +36,9 @@ HTML & SVG Custom Elements, glueing [qsa-observer](https://github.com/WebReflect
 ```
 
 Enjoy 👋
+
+### Native Support Included
+
+If your browser supports natively custom elements builtin extends (i.e. Chrome/ium based) you can use [@webreflection/elements/native](./native.js) export instead, which offers exact same API without any dependency, hence it's lightweight, easier to reason about, and natively wonderful.
+
+If you don't know if that's supported and you would like to feature detect this ability, you can pick the [@webreflection/elements/auto](./auto.js) export insted.

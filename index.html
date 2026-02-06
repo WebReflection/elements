@@ -5,10 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+  <style>
+    [is="my-h1"] {
+      color: blue;
+    }
+  </style>
   <script type="module">
 
-    import { elements, HTML, SVG } from './min.js';
-    // import { elements, HTML, SVG } from './native.js';
+    import { elements, HTML, SVG } from './auto.js';
 
     // same Custom Elements API
     elements.whenDefined('my-h1').then(Class => {

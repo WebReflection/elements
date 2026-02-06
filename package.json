@@ -3,18 +3,22 @@
   "version": "0.1.1",
   "description": "HTML & SVG Custom Elements",
   "main": "index.js",
+  "module": "index.js",
   "scripts": {
     "build": "rollup -c rollup.js"
   },
   "exports": {
     ".": "./index.js",
+    "./auto": "./auto.js",
+    "./min": "./min.js",
     "./native": "./native.js",
-    "./package.json": "./package.json",
-    "./min": "./min.js"
+    "./package.json": "./package.json"
   },
   "files": [
+    "auto.js",
     "index.js",
     "min.js",
+    "native.js",
     "README.md",
     "LICENSE"
   ],
