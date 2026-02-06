@@ -1,5 +1,5 @@
 import QSAO from 'qsa-observer';
-import createRegistry from 'nonchalance';
+import createRegistry from 'nonchalance/ce';
 
 const query = [];
 const registry = new Map;

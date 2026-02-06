@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <script type="module">
+    import { elements, HTML, SVG } from './min.js';
+  
+    // same Custom Elements API
+    elements.whenDefined('header').then(() => {
+      console.log('header defined');
+    });
+  
+    // native extends out of the box
+    elements.define('header', class extends HTML.H1 {
+      // anything that works with classes works here
+      #private;
+  
+      // only caveat:
+      //   if defined, the constructor MUST forwards arguments!
+      constructor(...args) {
+        super(...args);
+        this.#private = 'test';
+      }
+  
+      // custom elements lifecycle (connected/disconnected/attributeChanged)
+      connectedCallback() {
+        console.log('connected', this.#private);
+        this.innerHTML = 'Hello World';
+      }
+    });
+  
+    // automatic upgrades per element
+    elements.whenDefined('header').then(() => {
+      console.log('header defined');
+    });
+  </script>
+  <h1 is="header"></h1>
+</body>
+</html>
