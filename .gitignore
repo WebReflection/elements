@@ -1,0 +1,5 @@
+.DS_Store
+.nyc_output
+v8.log
+coverage/
+node_modules/
