@@ -12,8 +12,8 @@
     "./min": "./min.js"
   },
   "files": [
-    "elements.js",
     "index.js",
+    "min.js",
     "README.md",
     "LICENSE"
   ],
