@@ -2,6 +2,8 @@
 
 HTML & SVG Custom Elements, glueing [qsa-observer](https://github.com/WebReflection/qsa-observer#readme) and [nonchalance](https://github.com/WebReflection/nonchalance#readme) together.
 
+**[Live Test](https://webreflection.github.io/elements/test.html)**
+
 ```html
 <script type="module">
 
@@ -18,7 +20,7 @@ HTML & SVG Custom Elements, glueing [qsa-observer](https://github.com/WebReflect
     #private;
 
     // only caveat:
-    //   if defined, the constructor MUST forwards arguments!
+    //   if defined, the constructor MUST forward arguments!
     constructor(...args) {
       super(...args);
       this.#private = 'test';
@@ -39,6 +41,6 @@ Enjoy 👋
 
 ### Native Support Included
 
-If your browser supports natively custom elements builtin extends (i.e. Chrome/ium based) you can use [@webreflection/elements/native](./native.js) export instead, which offers exact same API without any dependency, hence it's lightweight, easier to reason about, and natively wonderful.
+If your browser supports natively *HTML* custom elements builtin extends (i.e. Chrome/ium based), and *HTML* is all you want/need to extend 'cause *SVG* custom elements do not exist natively on the Web, you can use [@webreflection/elements/native](./native.js) export instead, which offers the **exact same API** without any dependency, hence it's lightweight, easier to reason about, and natively wonderful.
 
 If you don't know if that's supported and you would like to feature detect this ability, you can pick the [@webreflection/elements/auto](./auto.js) export insted.

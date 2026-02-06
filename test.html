@@ -6,8 +6,14 @@
 </head>
 <body>
   <style>
+    body {
+      display: grid;
+      place-items: center;
+      font-family: sans-serif;
+    }
     [is="my-h1"] {
-      color: blue;
+      font-size: 1.5rem;
+      color: darkblue;
     }
   </style>
   <script type="module">
@@ -25,7 +31,7 @@
       #private;
 
       // only caveat:
-      //   if defined, the constructor MUST forwards arguments!
+      //   if defined, the constructor MUST forward arguments!
       constructor(...args) {
         super(...args);
         this.#private = 'test';
@@ -34,11 +40,14 @@
       // custom elements lifecycle (connected/disconnected/attributeChanged)
       connectedCallback() {
         console.log('connected', this.#private);
-        this.innerHTML = 'Hello World';
+        this.innerHTML = '@webreflection/elements 🥳';
       }
     });
 
   </script>
   <h1 is="my-h1"></h1>
+  <div>
+    <small>made with ❤️ by <a href="https://github.com/WebReflection/elements">@webreflection</a></small>
+  </div>
 </body>
 </html>

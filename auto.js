@@ -4,8 +4,13 @@ let { HTML, SVG, elements } = module;
 
 try {
   const LI = class extends HTMLLIElement {};
-  customElements.define('extends-' + Date.now(), LI, { extends: 'li' });
+  customElements.define('li-' + Date.now(), LI, { extends: 'li' });
   new LI;
+  SVG = new Proxy(module, {
+    get() {
+      throw new DOMException('SVG extends not natively supported');
+    }
+  });
 }
 catch {
   ({ HTML, SVG, elements } = await import('./min.js'));
