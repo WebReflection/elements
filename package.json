@@ -8,6 +8,7 @@
   },
   "exports": {
     ".": "./index.js",
+    "./native": "./native.js",
     "./package.json": "./package.json",
     "./min": "./min.js"
   },

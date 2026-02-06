@@ -4,15 +4,16 @@ HTML & SVG Custom Elements, glueing [qsa-observer](https://github.com/WebReflect
 
 ```html
 <script type="module">
+
   import { elements, HTML, SVG } from 'https://esm.run/@webreflection/elements';
 
   // same Custom Elements API
-  elements.whenDefined('header').then(() => {
-    console.log('header defined');
+  elements.whenDefined('my-h1').then(Class => {
+    console.log(Class.name, 'defined');
   });
 
   // native extends out of the box
-  elements.define('header', class extends HTML.H1 {
+  elements.define('my-h1', class MyH1 extends HTML.H1 {
     // anything that works with classes works here
     #private;
 
@@ -30,12 +31,8 @@ HTML & SVG Custom Elements, glueing [qsa-observer](https://github.com/WebReflect
     }
   });
 
-  // automatic upgrades per element
-  elements.whenDefined('header').then(() => {
-    console.log('header defined');
-  });
 </script>
-<h1 is="header"></h1>
+<h1 is="my-h1"></h1>
 ```
 
 Enjoy 👋
