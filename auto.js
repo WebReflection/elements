@@ -8,7 +8,8 @@ try {
   new LI;
 }
 catch {
-  ({ HTML, elements } = await import('./min.js'));
+  // @ts-ignore
+  ({ HTML, elements } = await import(/* webpackIgnore: true */ './index.js'));
 }
 
 export { HTML, SVG, elements };

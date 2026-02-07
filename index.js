@@ -31,6 +31,11 @@ const wait = name => {
 export const { HTML, SVG } = createRegistry();
 
 export const elements = {
+  /**
+   * @param {string} name
+   * @param {CustomElementConstructor} constructor
+   * @returns
+   */
   define(name, constructor) {
     if (registry.has(name) || customElements.get(name))
       throw new DOMException(`Element ${name} already defined`);
@@ -42,6 +47,16 @@ export const elements = {
     query.push(selector);
     parse(document.querySelectorAll(selector));
   },
+
+  /**
+   * @param {string} name
+   * @returns {CustomElementConstructor?}
+   */
   get: name => registry.get(name),
+
+  /**
+   * @param {string} name
+   * @returns {Promise<CustomElementConstructor>}
+   */
   whenDefined: name => wait(name).promise,
 };

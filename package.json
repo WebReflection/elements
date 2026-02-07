@@ -4,17 +4,29 @@
   "description": "HTML & SVG Custom Elements",
   "main": "index.js",
   "module": "index.js",
+  "types": "./types/index.d.ts",
   "scripts": {
-    "build": "rollup -c rollup.js"
+    "build": "rollup -c rollup.js && npm run types",
+    "types": "rm -rf types && tsc --allowJs --checkJs --lib esnext,dom --moduleResolution nodenext --module NodeNext --target esnext -d --emitDeclarationOnly --outDir ./types ./index.js ./auto.js ./native.js"
   },
   "exports": {
-    ".": "./index.js",
-    "./auto": "./auto.js",
+    ".": {
+      "import": "./index.js",
+      "types": "./types/index.d.ts"
+    },
+    "./auto": {
+      "import": "./auto.js",
+      "types": "./types/auto.d.ts"
+    },
+    "./native": {
+      "import": "./native.js",
+      "types": "./types/native.d.ts"
+    },
     "./min": "./min.js",
-    "./native": "./native.js",
     "./package.json": "./package.json"
   },
   "files": [
+    "types/*",
     "auto.js",
     "index.js",
     "min.js",
@@ -39,7 +51,8 @@
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser": "^0.4.4",
-    "rollup": "^4.57.1"
+    "rollup": "^4.57.1",
+    "typescript": "^5.9.3"
   },
   "repository": {
     "type": "git",
