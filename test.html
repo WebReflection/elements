@@ -18,6 +18,7 @@
   </style>
   <script type="module">
 
+    import element from 'https://esm.run/@webreflection/element';
     import { elements, HTML } from './dist/auto.js';
 
     // same Custom Elements API
@@ -36,6 +37,7 @@
       constructor(...args) {
         super(...args);
         this.#private = 'test';
+        // this.setAttribute('is', 'my-h1');
       }
 
       // custom elements lifecycle (connected/disconnected/attributeChanged)
@@ -58,6 +60,16 @@
     elements.whenDefined('my-element').then(Class => {
       console.log(Class.name, 'defined');
     });
+
+    // procedural example with explicit attribute set
+    // document.body.appendChild(document.createElement('h1', { is: 'my-h1' })).setAttribute('is', 'my-h1');
+    
+    // class based example with attribute set in the constructor or explicitly
+    // const MyH1 = elements.get('my-h1');
+    // document.body.appendChild(new MyH1).setAttribute('is', 'my-h1');
+
+    // @webreflection/element simplified procedure
+    // document.body.appendChild(element('h1', { is: 'my-h1' }));
 
   </script>
   <h1 is="my-h1"></h1>
