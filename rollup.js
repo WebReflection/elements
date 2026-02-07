@@ -3,9 +3,9 @@ import terser from '@rollup/plugin-terser';
 
 export default {
   plugins: [nodeResolve(), terser()],
-  input: './index.js',
+  input: './auto.js',
   output: {
     esModule: true,
-    file: `./min.js`,
+    dir: './dist'
   }
 };

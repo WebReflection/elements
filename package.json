@@ -6,7 +6,7 @@
   "module": "index.js",
   "types": "./types/index.d.ts",
   "scripts": {
-    "build": "rollup -c rollup.js && npm run types",
+    "build": "rm -rf dist && rollup -c rollup.js && npm run types",
     "types": "rm -rf types && tsc --allowJs --checkJs --lib esnext,dom --moduleResolution nodenext --module NodeNext --target esnext -d --emitDeclarationOnly --outDir ./types ./index.js ./auto.js ./native.js"
   },
   "exports": {
@@ -15,21 +15,20 @@
       "types": "./types/index.d.ts"
     },
     "./auto": {
-      "import": "./auto.js",
+      "import": "./dist/auto.js",
       "types": "./types/auto.d.ts"
     },
     "./native": {
       "import": "./native.js",
       "types": "./types/native.d.ts"
     },
-    "./min": "./min.js",
     "./package.json": "./package.json"
   },
   "files": [
+    "dist/*",
     "types/*",
     "auto.js",
     "index.js",
-    "min.js",
     "native.js",
     "README.md",
     "LICENSE"
