@@ -4,7 +4,10 @@ const create = document.createElement.bind(document);
 
 const set = (map, tag) => {
   let Class = DOM.get(tag);
-  if (!Class) DOM.set(tag, Class = create(tag).constructor);
+  if (!Class) {
+    Class = tag === 'element' ? HTMLElement : create(tag).constructor;
+    DOM.set(tag, Class);
+  }
   class CustomElement extends Class {
     static tag = tag;
   }
@@ -13,7 +16,7 @@ const set = (map, tag) => {
 };
 
 // @ts-ignore
-const HTML = /** @type {import("nonchalance/ce").HTML} */(new Proxy(new Map, {
+export const HTML = /** @type {import("nonchalance/ce").HTML} */(new Proxy(new Map, {
   get(map, tag) {
     let _ = /** @type {string} */ (tag).toLowerCase();
     return map.get(_) || set(map, _);
@@ -21,13 +24,11 @@ const HTML = /** @type {import("nonchalance/ce").HTML} */(new Proxy(new Map, {
 }));
 
 // @ts-ignore
-const SVG = /** @type {import("nonchalance/ce").SVG} */(new Proxy(new Map, {
+export const SVG = /** @type {import("nonchalance/ce").SVG} */(new Proxy(new Map, {
   get() {
     throw new DOMException('SVG extends not natively supported');
   }
 }));
-
-export { HTML, SVG };
 
 export const elements = {
   /**

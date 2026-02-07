@@ -5,16 +5,12 @@ const query = [];
 const registry = new Map;
 const waitlist = new Map;
 
-const name = selector => {
-  const i = selector.indexOf('="');
-  return selector.slice(i + 2, -2);
-};
-
 const { parse } = QSAO({
   query,
   handle(element, connected, selector) {
     if (connected) {
-      const constructor = registry.get(name(selector));
+      const name = selector[0] === '[' ? selector.slice(5, -2) : selector;
+      const constructor = registry.get(name);
       if (!(element instanceof constructor))
         new constructor(element);
     }
@@ -43,7 +39,7 @@ export const elements = {
     registry.set(name, constructor);
     wait(name).resolve(constructor);
 
-    const selector = `[is="${name}"]`;
+    const selector = constructor.tag === 'element' ? name : `[is="${name}"]`;
     query.push(selector);
     parse(document.querySelectorAll(selector));
   },
