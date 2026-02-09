@@ -39,6 +39,7 @@ export const elements = {
     registry.set(name, constructor);
     wait(name).resolve(constructor);
 
+    //@ts-ignore
     const selector = constructor.tag === 'element' ? name : `[is="${name}"]`;
     query.push(selector);
     parse(document.querySelectorAll(selector));

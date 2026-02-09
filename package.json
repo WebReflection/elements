@@ -44,7 +44,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "nonchalance": "^0.6.1",
+    "nonchalance": "^0.6.2",
     "qsa-observer": "^3.0.2"
   },
   "devDependencies": {
