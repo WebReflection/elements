@@ -1,8 +1,18 @@
+// @ts-check
+
 import QSAO from 'qsa-observer';
 import createRegistry from 'nonchalance/ce';
 
+// @ts-ignore
+import withResolvers from '@webreflection/utils/with-resolvers';
+
+/** @type {string[]} */
 const query = [];
+
+/** @type {Map<string, CustomElementConstructor>} */
 const registry = new Map;
+
+/** @type {Map<string, Promise<CustomElementConstructor>>} */
 const waitlist = new Map;
 
 const { parse } = QSAO({
@@ -11,16 +21,24 @@ const { parse } = QSAO({
     if (connected) {
       const name = selector[0] === '[' ? selector.slice(5, -2) : selector;
       const constructor = registry.get(name);
+      // @ts-ignore
       if (!(element instanceof constructor))
+        // @ts-ignore
         new constructor(element);
     }
   }
 });
 
+/**
+ * @param {string} name
+ * @returns {{resolve: (value: CustomElementConstructor) => void, reject: (reason?: any) => void, promise: Promise<CustomElementConstructor>}}
+ */
 const wait = name => {
   if (!waitlist.has(name))
-    waitlist.set(name, Promise.withResolvers());
+    // @ts-ignore
+    waitlist.set(name, withResolvers());
 
+  // @ts-ignore
   return waitlist.get(name);
 };
 
@@ -47,7 +65,7 @@ export const elements = {
 
   /**
    * @param {string} name
-   * @returns {CustomElementConstructor?}
+   * @returns {CustomElementConstructor | undefined}
    */
   get: name => registry.get(name),
 

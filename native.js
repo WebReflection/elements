@@ -1,7 +1,14 @@
+// @ts-check
+
 const DOM = new Map;
 
 const create = document.createElement.bind(document);
 
+/**
+ * @param {Map<string, CustomElementConstructor>} map
+ * @param {string} tag
+ * @returns {CustomElementConstructor}
+ */
 const set = (map, tag) => {
   let Class = DOM.get(tag);
   if (!Class) {
@@ -9,6 +16,7 @@ const set = (map, tag) => {
     DOM.set(tag, Class);
   }
   class CustomElement extends Class {
+    /** @type {string} */
     static tag = tag;
   }
   map.set(tag, CustomElement);
@@ -51,7 +59,7 @@ export const elements = {
 
   /**
    * @param {string} name
-   * @returns {CustomElementConstructor?}
+   * @returns {CustomElementConstructor | undefined}
    */
   get: name => customElements.get(name),
 

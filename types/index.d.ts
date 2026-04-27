@@ -7,6 +7,6 @@ export namespace elements {
      * @returns
      */
     function define(name: string, constructor: CustomElementConstructor): void;
-    function get(name: string): CustomElementConstructor | null;
+    function get(name: string): CustomElementConstructor | undefined;
     function whenDefined(name: string): Promise<CustomElementConstructor>;
 }
